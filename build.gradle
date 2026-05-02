@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+    group = 'com.agent'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    
+    // CSV Handling
+    implementation 'com.opencsv:opencsv:5.8'
+    
+    // Text Processing
+    implementation 'org.apache.commons:commons-text:1.10.0'
+    
+    // String Similarity
+    implementation 'info.debatty:java-string-similarity:2.0.0'
+    
+    // JSON
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
+    
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+tasks.named('test') {
+    useJUnitPlatform()
+
+    // 🔥 Force test execution every time
+    outputs.upToDateWhen { false }
+
+    testLogging {
+        events "passed", "failed", "skipped"
+    }
+}
+bootJar {
+    mainClass = 'com.agent.HackathonAgentApplication'
+}

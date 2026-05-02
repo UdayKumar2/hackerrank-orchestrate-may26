@@ -1,0 +1,21 @@
+spring:
+  main:
+    web-application-type: none
+  application:
+    name: hackathon-agent
+  
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    root: INFO
+    com.agent: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+agent:
+  input-file: support_tickets/support_tickets.csv
+  output-file: support_tickets/output.csv
+  retrieval-top-k: 3
